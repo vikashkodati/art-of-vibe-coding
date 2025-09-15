@@ -325,6 +325,30 @@ brew install gh
 # Download from https://cli.github.com/
 ```
 
+### ripgrep (Optional but recommended)
+A fast command-line search tool that improves performance with AI coding tools:
+
+**macOS (Homebrew):**
+```bash
+brew install ripgrep
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt install ripgrep
+```
+
+**Windows:**
+```bash
+# Using Chocolatey
+choco install ripgrep
+
+# Using winget
+winget install BurntSushi.ripgrep.MSVC
+```
+
+**Alternative:** Download from [GitHub releases](https://github.com/BurntSushi/ripgrep/releases)
+
 ---
 
 ## ✅ Pre-Workshop Checklist
