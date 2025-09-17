@@ -182,7 +182,7 @@ gemini
    ```bash
    export GEMINI_API_KEY="your-api-key-here"
    ```
-
+ok
 #### Verification
 ```bash
 gemini --version
@@ -263,16 +263,62 @@ You'll be building a Python FastAPI backend during the workshop.
 #### Requirements
 - Python 3.8 or higher
 - pip package manager
+- Conda (recommended for virtual environments)
+
+#### Install Conda (Recommended)
+
+**Option 1: Miniconda (Lightweight)**
+```bash
+# macOS/Linux
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+bash Miniconda3-latest-MacOSX-x86_64.sh
+
+# Windows
+# Download from: https://docs.conda.io/en/latest/miniconda.html
+```
+
+**Option 2: Anaconda (Full Distribution)**
+Download from [anaconda.com](https://www.anaconda.com/download)
+
+**Option 3: Package Managers**
+```bash
+# macOS
+brew install --cask miniconda
+
+# Windows (Chocolatey)
+choco install miniconda3
+
+# Windows (winget)
+winget install Anaconda.Miniconda3
+```
+
+#### Setup Virtual Environment with Conda
+```bash
+# Create a new environment for the workshop
+conda create -n vibe-coding python=3.11
+
+# Activate the environment
+conda activate vibe-coding
+
+# Verify Python version
+python --version
+```
 
 #### Install FastAPI and dependencies
 ```bash
+# With the conda environment activated
 pip install fastapi uvicorn python-multipart websockets
+
+# Or using conda
+conda install -c conda-forge fastapi uvicorn
+pip install python-multipart websockets
 ```
 
 #### Verify installation
 ```bash
 python --version
 pip list | grep fastapi
+conda list | grep fastapi
 ```
 
 ---
@@ -325,8 +371,23 @@ brew install gh
 # Download from https://cli.github.com/
 ```
 
-### ripgrep (Optional but recommended)
-A fast command-line search tool that improves performance with AI coding tools:
+---
+
+## 🛠️ Optional Tools
+
+These tools are not required but can significantly enhance your development experience, especially when working with AI coding assistants.
+
+### ripgrep (Highly Recommended)
+
+A blazing fast command-line search tool that dramatically improves performance with AI coding tools like OpenAI Codex, Claude Code, and other AI assistants. It's much faster than traditional grep and provides better search capabilities for large codebases.
+
+**Why you need it:**
+- 10-100x faster than grep for code searches
+- Essential for AI tools to quickly understand your codebase
+- Better integration with modern IDEs and AI assistants
+- Improves response time when AI tools analyze your project
+
+**Installation:**
 
 **macOS (Homebrew):**
 ```bash
@@ -348,6 +409,17 @@ winget install BurntSushi.ripgrep.MSVC
 ```
 
 **Alternative:** Download from [GitHub releases](https://github.com/BurntSushi/ripgrep/releases)
+
+**Verification:**
+```bash
+rg --version
+```
+
+**Quick test:**
+```bash
+# Search for "function" in your codebase
+rg "function" --type js
+```
 
 ---
 
