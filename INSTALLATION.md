@@ -2,11 +2,34 @@
 
 This guide provides step-by-step instructions for setting up all the tools you'll need for the workshop. Please complete all installations before the workshop begins.
 
+## Table of Contents
+
+1. [📟 Terminal Tools](#-terminal-tools)
+   - [Warp (Recommended)](#warp-recommended)
+   - [iTerm2 (macOS Alternative)](#iterm2-macos-alternative)
+   - [Windows Terminal (Windows)](#windows-terminal-windows)
+2. [🖥️ CLI Tools](#️-cli-tools)
+   - [Claude Code](#claude-code)
+   - [OpenAI Codex CLI](#openai-codex-cli)
+   - [Gemini CLI](#gemini-cli)
+3. [💻 IDEs & Code Editors](#-ides--code-editors)
+   - [Cursor IDE (Primary Recommendation)](#cursor-ide-primary-recommendation)
+   - [VS Code (Alternative Option)](#vs-code-alternative-option)
+4. [🐳 Containerized Dev Environment](#-containerized-dev-environment-macos--windowswsl2)
+5. [🐍 Python Development Setup](#-python-development-setup)
+6. [⚛️ Frontend Development Setup](#️-frontend-development-setup)
+7. [🔧 Additional Tools](#-additional-tools)
+8. [🛠️ Optional Tools](#️-optional-tools)
+9. [✅ Pre-Workshop Checklist](#-pre-workshop-checklist)
+10. [🆘 Troubleshooting](#-troubleshooting)
+11. [📚 Useful Resources](#-useful-resources)
+
 ## Overview
 
 You'll need to install and configure:
 - **Modern Terminal** - Warp (recommended) or iTerm2 for enhanced terminal experience
 - **Claude Code** - Anthropic's official CLI tool (requires paid subscription or API key)
+- **OpenAI Codex CLI** - OpenAI's official CLI for code generation and assistance
 - **Gemini CLI** - Google's AI assistant via official CLI tool
 - **Cursor IDE** - AI-powered code editor (recommended primary IDE)
 - **VS Code** (optional alternative)
@@ -138,6 +161,76 @@ claude --version
 claude --help
 ```
 
+### OpenAI Codex CLI
+
+OpenAI's official Codex CLI provides powerful AI assistance directly in your terminal for code generation, explanation, and debugging.
+
+#### Requirements
+- Node.js (for npm installation) or Homebrew (for macOS)
+- ChatGPT Plus, Pro, Team, Edu, or Enterprise subscription (recommended)
+- macOS or Linux (Windows support is experimental, WSL recommended)
+
+#### Installation
+
+**Option 1: npm (Recommended)**
+```bash
+npm install -g @openai/codex
+```
+
+**Option 2: Homebrew (macOS)**
+```bash
+brew install codex
+```
+
+#### Authentication
+
+When you first run `codex`, you'll be prompted to authenticate:
+
+**Option 1: ChatGPT Subscription (Recommended)**
+For users with ChatGPT Plus/Pro/Team/Edu/Enterprise subscriptions:
+
+1. Run `codex` in your terminal
+2. You'll be prompted to authenticate via browser
+3. Sign in with your ChatGPT account credentials
+4. Grant permissions when prompted
+5. Return to terminal - authentication should be complete
+
+**Option 2: Platform API Key (Alternative)**
+If you prefer using OpenAI Platform API keys:
+
+1. Get an API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Set it as an environment variable:
+   ```bash
+   # macOS/Linux
+   export OPENAI_API_KEY="your-platform-api-key"
+
+   # Windows PowerShell
+   $env:OPENAI_API_KEY = "your-platform-api-key"
+   ```
+3. Run `codex` - it should use the API key automatically
+
+> **Note:** ChatGPT subscription authentication is recommended for workshop participants as it's simpler and doesn't require managing API keys.
+
+#### Verification and First Use
+```bash
+# Launch Codex CLI
+codex
+
+# Test with a simple prompt
+codex "explain this codebase"
+```
+
+#### Upgrade
+```bash
+# npm
+npm install -g @openai/codex@latest
+
+# Homebrew
+brew upgrade codex
+```
+
+> **Note:** For detailed documentation, visit the [OpenAI Codex GitHub repository](https://github.com/openai/codex)
+
 ### Gemini CLI
 
 Access Google's Gemini models directly through the official Gemini CLI tool. Your personal Google account includes free daily usage limits.
@@ -182,7 +275,6 @@ gemini
    ```bash
    export GEMINI_API_KEY="your-api-key-here"
    ```
-ok
 #### Verification
 ```bash
 gemini --version
@@ -251,6 +343,7 @@ Install these extensions from the VS Code marketplace:
 1. Open Continue extension settings
 2. Add your Anthropic API key for Claude
 3. Google Cloud Code will use your Google account authentication
+
 ---
 
 ## 🐳 Containerized Dev Environment (macOS & Windows/WSL2)
