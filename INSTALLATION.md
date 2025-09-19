@@ -145,7 +145,8 @@ npm install -g @anthropic-ai/claude-cli
 
 **Login with your Claude account:**
 ```bash
-claude auth login
+claude
+> /login
 ```
 This will open a browser window to authenticate with your Claude Pro/Team account.
 
