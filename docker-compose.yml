@@ -13,8 +13,10 @@ services:
       # Tooling keys (optional)
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
 
+      HOST: 0.0.0.0
     volumes:
       # Host workspace → container /workspace (customizable)
       - ${WORKSPACE_HOST_DIR:-.}:/workspace
@@ -23,10 +25,23 @@ services:
       - gemini-config:/root/.gemini
       - claude-config:/root/.claude
       - cursor-config:/root/.cursor
+      - openai-config:/root/.openai
       - npm-cache:/root/.npm
+      - code-server-exts:/root/.local/share/code-server/extensions
+
+    
+    ports:
+      - "127.0.0.1:8080:8080"  # code-server
+      - "127.0.0.1:3000:3000"  # Next/Express
+      - "127.0.0.1:5173:5173"  # Vite dev
+      - "127.0.0.1:4173:4173"  # Vite preview
+      - "127.0.0.1:8000:8000"  # APIs
+      - "127.0.0.1:5000:5000"  # Sample App Port
 
 volumes:
   gemini-config:
   claude-config:
   cursor-config:
+  openai-config:
   npm-cache:
+  code-server-exts:

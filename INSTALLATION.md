@@ -348,7 +348,7 @@ Install these extensions from the VS Code marketplace:
 
 ## 🐳 Containerized Dev Environment (macOS & Windows/WSL2)
 
-Prefer a one-and-done setup? Use the Docker dev container. It includes GitHub CLI, Node 20, Gemini CLI, Claude Code, Cursor **CLI**, and **VS Code in your browser** (code-server).  
+Prefer a one-and-done setup? Use the Docker dev container. It includes GitHub CLI, Node 20, Gemini CLI, Claude Code, Cursor **CLI**, OpenAI Codex CLI, and **VS Code in your browser** (code-server).  
 > If you use the container, you can skip most native installs above.
 
 ### Prerequisites
@@ -375,6 +375,7 @@ WORKSPACE_HOST_DIR=.    # host folder to mount at /workspace (optional)
 # Optional keys used inside the container:
 GEMINI_API_KEY=
 ANTHROPIC_API_KEY=
+OPENAI_API_KEY=
 GITHUB_TOKEN=
 ````
 
