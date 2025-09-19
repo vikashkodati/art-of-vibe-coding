@@ -36,6 +36,7 @@ services:
       - "127.0.0.1:5173:5173"  # Vite dev
       - "127.0.0.1:4173:4173"  # Vite preview
       - "127.0.0.1:8000:8000"  # APIs
+      - "127.0.0.1:5000:5000"  # Sample App Port
 
 volumes:
   gemini-config:
