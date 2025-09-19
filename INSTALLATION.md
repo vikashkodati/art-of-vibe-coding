@@ -251,6 +251,81 @@ Install these extensions from the VS Code marketplace:
 1. Open Continue extension settings
 2. Add your Anthropic API key for Claude
 3. Google Cloud Code will use your Google account authentication
+---
+
+## 🐳 Containerized Dev Environment (macOS & Windows/WSL2)
+
+Prefer a one-and-done setup? Use the Docker dev container. It includes GitHub CLI, Node 20, Gemini CLI, Claude Code, Cursor **CLI**, and **VS Code in your browser** (code-server).  
+> If you use the container, you can skip most native installs above.
+
+### Prerequisites
+- Docker Desktop
+- **Windows only:** WSL2 with Ubuntu (`wsl --install -d Ubuntu`)
+- A browser (to open `http://localhost:8080`)
+
+### Repo Layout (root)
+```
+
+Dockerfile
+docker-compose.yml
+docker-compose.wsl.yml
+.env                # NOT committed
+.env.example        # committed (placeholders)
+
+````
+
+### Create `.env`
+```dotenv
+CODE_SERVER_PASSWORD=StrongPassword123!
+WORKSPACE_HOST_DIR=.    # host folder to mount at /workspace (optional)
+
+# Optional keys used inside the container:
+GEMINI_API_KEY=
+ANTHROPIC_API_KEY=
+GITHUB_TOKEN=
+````
+
+### Quick Start (from repo root)
+
+```bash
+# Clean old containers/volumes (avoids stale passwords/config):
+docker compose -f docker-compose.yml -f docker-compose.wsl.yml down -v
+
+# Build & run:
+docker compose -f docker-compose.yml -f docker-compose.wsl.yml up -d --build
+```
+
+Open the editor:
+
+* macOS: `open http://localhost:8080`
+* Linux: `xdg-open http://localhost:8080`
+* WSL: `wslview http://localhost:8080`
+
+**Windows tips:** keep the repo **inside WSL** (e.g., `~/projects/app`) for fast I/O and run the commands from the WSL Ubuntu shell.
+
+### Verify (in the code-server terminal)
+
+```bash
+git --version && node --version && npm --version && gh --version
+gemini --version || gemini --help
+claude --version || claude --help
+which code && code --version      # 'code' maps to code-server
+ls -la /workspace                 # should show your project files
+```
+
+### Stop / Reset
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.wsl.yml down
+# Reset code-server config/extensions:
+docker compose -f docker-compose.yml -f docker-compose.wsl.yml down -v
+```
+
+### Troubleshooting
+
+* **Login loop:** ensure `.env` has `CODE_SERVER_PASSWORD=…`, then `down -v` and `up -d --build`.
+* **Port busy:** change `ports:` in `docker-compose.wsl.yml` (e.g., `127.0.0.1:9090:8080`) and open `http://localhost:9090`.
+* **Slow on Windows:** move the repo into WSL and run compose there.
 
 ---
 

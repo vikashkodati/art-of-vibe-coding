@@ -1,0 +1,9 @@
+services:
+  devbox:
+    ports:
+      - "127.0.0.1:8080:8080"    # code-server (browser VS Code)
+    command: ["/usr/bin/code-server","/workspace","--host","0.0.0.0","--port","8080","--auth","password"]
+    volumes:
+      - ${HOME}/.gitconfig:/root/.gitconfig:ro
+      - ${HOME}/.ssh:/root/.ssh:ro
+

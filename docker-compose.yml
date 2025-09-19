@@ -1,0 +1,32 @@
+services:
+  devbox:
+    build: .
+    image: ai-devbox:latest
+    container_name: ai-devbox
+    tty: true
+    stdin_open: true
+    working_dir: /workspace
+    environment:
+      # Auth for code-server (read from .env)
+      PASSWORD: ${CODE_SERVER_PASSWORD:-change-me}
+
+      # Tooling keys (optional)
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+
+    volumes:
+      # Host workspace → container /workspace (customizable)
+      - ${WORKSPACE_HOST_DIR:-.}:/workspace
+
+      # Persist tool configs between rebuilds
+      - gemini-config:/root/.gemini
+      - claude-config:/root/.claude
+      - cursor-config:/root/.cursor
+      - npm-cache:/root/.npm
+
+volumes:
+  gemini-config:
+  claude-config:
+  cursor-config:
+  npm-cache:
