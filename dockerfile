@@ -1,4 +1,4 @@
-# devbox: Ubuntu 24.04 + GitHub CLI, Node 20, Gemini CLI, Claude Code, Cursor CLI, code-server
+# devbox: Ubuntu 24.04 + GitHub CLI, Node 20, Gemini CLI, Claude Code, Cursor CLI, OpenAI Codex, code-server
 FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash", "-lc"]
@@ -35,6 +35,10 @@ RUN npm install -g @anthropic-ai/claude-code
 RUN curl -fsS https://cursor.com/cli | bash || true \
  && if [ -d "/root/.cursor/bin" ]; then cp /root/.cursor/bin/* /usr/local/bin/; fi
 # (CLI installer & docs.) :contentReference[oaicite:7]{index=7}
+
+# OpenAI Codex (official CLI tool)
+RUN npm install -g @openai/codex
+# (Official OpenAI Codex CLI as documented in INSTALLATION.md)
 
 # code-server (VS Code in the browser)
 ENV CODE_SERVER_PORT=8080

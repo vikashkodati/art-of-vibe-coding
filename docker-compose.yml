@@ -13,6 +13,7 @@ services:
       # Tooling keys (optional)
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
 
     volumes:
@@ -23,10 +24,12 @@ services:
       - gemini-config:/root/.gemini
       - claude-config:/root/.claude
       - cursor-config:/root/.cursor
+      - openai-config:/root/.openai
       - npm-cache:/root/.npm
 
 volumes:
   gemini-config:
   claude-config:
   cursor-config:
+  openai-config:
   npm-cache:
