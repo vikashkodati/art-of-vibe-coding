@@ -8,7 +8,7 @@ This guide provides step-by-step instructions for setting up all the tools you'l
    - [Warp (Recommended)](#warp-recommended)
    - [iTerm2 (macOS Alternative)](#iterm2-macos-alternative)
    - [Windows Terminal (Windows)](#windows-terminal-windows)
-2. [🖥️ CLI Tools](#️-cli-tools)
+2. [🖥️ Vibecoding CLI Tools](#️-vibecoding-cli-tools)
    - [Claude Code](#claude-code)
    - [OpenAI Codex CLI](#openai-codex-cli)
    - [Gemini CLI](#gemini-cli)
@@ -118,7 +118,7 @@ winget install Microsoft.WindowsTerminal
 
 ---
 
-## 🖥️ CLI Tools
+## 🖥️ Vibecoding CLI Tools
 
 ### Claude Code
 
@@ -657,6 +657,6 @@ If you encounter issues during installation:
 - [Google AI Studio](https://aistudio.google.com/)
 - [Cursor Documentation](https://docs.cursor.com/)
 - [VS Code Documentation](https://code.visualstudio.com/docs)
-- [Continue Extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
+- [OpenAI Codex GitHub repository](https://github.com/openai/codex)
 
 Ready to transform your development workflow with AI? See you at the workshop! 🚀
