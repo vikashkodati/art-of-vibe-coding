@@ -59,38 +59,53 @@ Note: Exact user‑config paths can vary by installation. If `~/.claude/agents` 
 
 Make ArchiBot callable from any project as a reusable slash command.
 
-Option A — Create via Gemini CLI (recommended)
-1) Launch Gemini CLI in any project directory:
-   ```bash
-   gemini
-   ```
-2) In Gemini, paste this prompt to create a global command:
-   ```
-   I want to create a custom slash command called /archibot that acts as an Architecture Decisioning assistant. It should:
-   - Interview me briefly to gather requirements
-   - Propose one of three architecture patterns with rationale
-   - Output concise docs and mermaid diagrams
-   - After approval, scaffold a project structure under a new subdirectory with README, env, docker, templates, and CI basics
-   Use the following document as the base instruction/spec. Incorporate its structure and behavior:
-   [PASTE CONTENTS OF step3/archibot-agent.md HERE]
+**Step 1: Create the ArchiBot Command Directory**
 
-   Please set this command as global (available across all projects), provide a short help/description, and confirm how to run and edit it later.
-   ```
-3) Confirm the command is registered and global. Ask Gemini:
-   ```
-   Show me how to list, edit, and export my custom slash commands. Verify /archibot is available globally.
-   ```
-4) Test it:
-   ```
-   /archibot
-   ```
+For global availability across all projects:
+```bash
+mkdir -p ~/.gemini/commands
+```
 
-Option B — Import or save manually (when supported)
-- Some Gemini CLI builds support exporting/importing commands or storing them in a user config directory. If available on your version, ask Gemini:
-  ```
-  Where are custom slash commands stored on this system, and how do I import one from a file? I want /archibot to be available globally.
-  ```
-- Follow its instructions to import a command backed by the contents of `step3/archibot-agent.md` and mark it global. Then restart Gemini CLI and verify `/archibot` appears in the commands list.
+For project-specific availability:
+```bash
+mkdir -p .gemini/commands
+```
+
+**Step 2: Create the ArchiBot Command File**
+
+Create `~/.gemini/commands/archibot.toml` (for global) or `.gemini/commands/archibot.toml` (for project):
+
+```bash
+# Copy the provided template
+cp step3/archibot.toml ~/.gemini/commands/archibot.toml
+
+# Or copy the content manually
+cat step3/archibot.toml
+```
+
+The complete `archibot.toml` file is provided in this step's directory and contains:
+- Full ArchiBot persona and capabilities
+- Interview strategy and key questions
+- All three architecture patterns (Python-First, All-TypeScript, Hybrid)
+- Architecture selection rubric
+- Complete conversation flow
+- Project scaffolding instructions
+
+**Step 3: Test the Command**
+
+Restart Gemini CLI and test:
+```bash
+gemini
+/archibot
+```
+
+**Step 4: Verify Command Installation**
+
+List available commands to confirm:
+```bash
+# In Gemini CLI
+/help
+```
 
 Notes
 - Keeping the command global ensures ArchiBot is available in all future projects without re-creation.

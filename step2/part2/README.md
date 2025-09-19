@@ -66,64 +66,95 @@ gemini
 
 ### 3. Create a Senior React Developer Code Review Command
 
-Create a custom slash command for React code reviews. Use this prompt in Gemini CLI:
+Create a custom slash command for React code reviews using a `.toml` file.
 
-```
-I want to create a custom slash command called /react-review that acts as a senior React developer with 10+ years of experience. When I use this command, it should:
+**Step 1: Create the Commands Directory**
 
-1. Analyze all React components in the current directory
-2. Focus on:
-   - Modern React best practices (hooks, functional components)
-   - Performance optimization opportunities
-   - Accessibility compliance (WCAG guidelines)
-   - Security vulnerabilities
-   - Code maintainability and structure
-   - TypeScript usage (if applicable)
-
-3. Organize feedback by severity: Critical, High, Medium, Low
-4. Provide specific code examples for improvements
-5. Suggest concrete next steps
-
-Please help me create this custom slash command and show me how to save it for future use.
+For global availability across all projects:
+```bash
+mkdir -p ~/.gemini/commands
 ```
 
-### 4. Test Your Custom Command
-
-After creating the command, test it on your current project:
-
+For project-specific availability:
+```bash
+mkdir -p .gemini/commands
 ```
+
+**Step 2: Create the React Review Command File**
+
+Create `~/.gemini/commands/react-review.toml` (for global) or `.gemini/commands/react-review.toml` (for project):
+
+```bash
+# Copy the provided template
+cp step2/part2/react-review.toml ~/.gemini/commands/react-review.toml
+
+# Or copy the content manually
+cat step2/part2/react-review.toml
+```
+
+The complete `react-review.toml` file is provided in this step's directory and contains:
+- Senior React developer persona with 10+ years experience
+- Comprehensive analysis scope for React projects
+- Five key expertise areas (Modern React, Performance, Accessibility, Security, Code Quality)
+- Severity-based feedback structure with emojis
+- Detailed output format with code examples
+- Positive pattern recognition
+
+**Step 3: Test the Command**
+
+Restart Gemini CLI and test:
+```bash
+gemini
 /react-review
 ```
 
-### 5. Create Additional Specialized Commands
+### 4. Create Additional Specialized Commands
 
-Based on your experience, consider creating these additional commands:
+Based on your experience, consider creating these additional commands as separate `.toml` files:
 
-**Performance Analysis Command:**
-```
-/react-perf - Analyze React components for performance bottlenecks and optimization opportunities
-```
-
-**Accessibility Audit Command:**
-```
-/a11y-check - Comprehensive accessibility audit focusing on WCAG compliance
+**Performance Analysis Command (`react-perf.toml`):**
+```toml
+description = "Analyze React components for performance bottlenecks and optimization opportunities"
+prompt = """[Create similar detailed prompt focused on performance]"""
 ```
 
-**Security Review Command:**
-```
-/security-audit - Security-focused review of React components and dependencies
+**Accessibility Audit Command (`a11y-check.toml`):**
+```toml
+description = "Comprehensive accessibility audit focusing on WCAG compliance"
+prompt = """[Create similar detailed prompt focused on accessibility]"""
 ```
 
-### 6. Save and Manage Your Commands
-
-Learn how to manage your custom commands:
-
+**Security Review Command (`security-audit.toml`):**
+```toml
+description = "Security-focused review of React components and dependencies"
+prompt = """[Create similar detailed prompt focused on security]"""
 ```
-Show me how to:
-1. List all my custom slash commands
-2. Edit existing commands
-3. Delete commands I no longer need
-4. Export my commands to share with team members
+
+### 5. Manage Your Commands
+
+**List available commands:**
+```bash
+# In Gemini CLI
+/help
+```
+
+**Edit existing commands:**
+```bash
+# Edit the .toml file directly
+vim ~/.gemini/commands/react-review.toml
+# or
+code ~/.gemini/commands/react-review.toml
+```
+
+**Delete commands:**
+```bash
+rm ~/.gemini/commands/command-name.toml
+```
+
+**Share commands with team:**
+```bash
+# Copy the .toml file to share
+cp ~/.gemini/commands/react-review.toml /path/to/shared/location/
 ```
 
 ---
