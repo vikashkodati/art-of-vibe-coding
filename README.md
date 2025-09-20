@@ -58,3 +58,4 @@ Please complete the setup process before attending:
 
 ### Workshop Materials
 Coming soon! Workshop materials and example projects will be added as we approach the workshop date.
+# Testing contribution graph
