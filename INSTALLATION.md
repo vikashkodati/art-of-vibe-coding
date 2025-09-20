@@ -15,14 +15,15 @@ This guide provides step-by-step instructions for setting up all the tools you'l
 3. [💻 IDEs & Code Editors](#-ides--code-editors)
    - [Cursor IDE (Primary Recommendation)](#cursor-ide-primary-recommendation)
    - [VS Code (Alternative Option)](#vs-code-alternative-option)
-4. [🐳 Containerized Dev Environment](#-containerized-dev-environment-macos--windowswsl2)
-5. [🐍 Python Development Setup](#-python-development-setup)
-6. [⚛️ Frontend Development Setup](#️-frontend-development-setup)
-7. [🔧 Additional Tools](#-additional-tools)
-8. [🛠️ Optional Tools](#️-optional-tools)
-9. [✅ Pre-Workshop Checklist](#-pre-workshop-checklist)
-10. [🆘 Troubleshooting](#-troubleshooting)
-11. [📚 Useful Resources](#-useful-resources)
+4. [🐳 Docker & Containerization](#-docker--containerization)
+5. [🐳 Containerized Dev Environment](#-containerized-dev-environment-macos--windowswsl2)
+6. [🐍 Python Development Setup](#-python-development-setup)
+7. [⚛️ Frontend Development Setup](#️-frontend-development-setup)
+8. [🔧 Additional Tools](#-additional-tools)
+9. [🛠️ Optional Tools](#️-optional-tools)
+10. [✅ Pre-Workshop Checklist](#-pre-workshop-checklist)
+11. [🆘 Troubleshooting](#-troubleshooting)
+12. [📚 Useful Resources](#-useful-resources)
 
 ## Overview
 
@@ -31,6 +32,7 @@ You'll need to install and configure:
 - **Claude Code** - Anthropic's official CLI tool (requires paid subscription or API key)
 - **OpenAI Codex CLI** - OpenAI's official CLI for code generation and assistance
 - **Gemini CLI** - Google's AI assistant via official CLI tool
+- **Docker** - Container platform for development environments (required for ArchiBot projects)
 - **Cursor IDE** - AI-powered code editor (recommended primary IDE)
 - **VS Code** (optional alternative)
 
@@ -347,6 +349,93 @@ Install these extensions from the VS Code marketplace:
 
 ---
 
+## 🐳 Docker & Containerization
+
+Docker is **required** for the workshop, especially when working with ArchiBot (Step 3) which creates Docker-based development environments for scaffolded projects.
+
+### Why Docker is Required
+
+- **ArchiBot Projects**: ArchiBot automatically creates `docker-compose.yml` files for all scaffolded projects
+- **Consistent Development Environment**: Ensures all team members have identical setups
+- **Simplified Dependencies**: Database, Redis, and service dependencies run in containers
+- **Production Parity**: Local development mirrors production deployment
+
+### Installation
+
+#### macOS
+**Option 1: Docker Desktop (Recommended)**
+1. Download from [docker.com](https://www.docker.com/products/docker-desktop/)
+2. Install Docker Desktop
+3. Launch and complete setup
+
+**Option 2: Homebrew**
+```bash
+brew install --cask docker
+```
+
+#### Windows
+**Option 1: Docker Desktop with WSL2 (Recommended)**
+1. Install WSL2: `wsl --install`
+2. Download Docker Desktop from [docker.com](https://www.docker.com/products/docker-desktop/)
+3. Install with WSL2 backend enabled
+
+**Option 2: Package Manager**
+```powershell
+# Using winget
+winget install Docker.DockerDesktop
+
+# Using Chocolatey
+choco install docker-desktop
+```
+
+#### Linux (Ubuntu/Debian)
+```bash
+# Install Docker Engine
+sudo apt-get update
+sudo apt-get install docker.io docker-compose-plugin
+
+# Add user to docker group
+sudo usermod -aG docker $USER
+
+# Log out and back in, then verify
+docker --version
+docker compose version
+```
+
+### Verification
+After installation, verify Docker is working:
+
+```bash
+# Check Docker version
+docker --version
+
+# Check Docker Compose
+docker compose version
+
+# Test Docker is running
+docker run hello-world
+```
+
+### Required Versions
+- **Docker**: 20.x or higher
+- **Docker Compose**: v2.x (note: `docker compose`, not `docker-compose`)
+
+### Troubleshooting
+**Docker Desktop won't start:**
+- Ensure virtualization is enabled in BIOS/UEFI
+- On Windows: Verify WSL2 is installed and set as default
+
+**Permission denied errors (Linux):**
+```bash
+sudo usermod -aG docker $USER
+# Log out and back in
+```
+
+**Old docker-compose command:**
+Use `docker compose` (space) instead of `docker-compose` (hyphen) for v2
+
+---
+
 ## 🐳 Containerized Dev Environment (macOS & Windows/WSL2)
 
 Prefer a one-and-done setup? Use the Docker dev container. It includes GitHub CLI, Node 20, Gemini CLI, Claude Code, Cursor **CLI**, OpenAI Codex CLI, and **VS Code in your browser** (code-server).  
@@ -606,6 +695,11 @@ claude --version
 # Gemini CLI
 gemini --version
 
+# Docker (Required for ArchiBot)
+docker --version
+docker compose version
+docker run hello-world
+
 # Development tools
 python --version
 node --version
@@ -617,6 +711,12 @@ git --version
 - [ ] AI features respond to prompts
 - [ ] Can create and edit files
 - [ ] Terminal integration works
+
+### Docker Check
+- [ ] Docker Desktop running (if using Docker Desktop)
+- [ ] `docker run hello-world` succeeds
+- [ ] `docker compose version` shows v2.x
+- [ ] No permission errors when running docker commands
 
 ### Account Requirements
 - [ ] Claude subscription active OR API key set
@@ -642,6 +742,12 @@ git --version
 - Check API keys in settings
 - Restart the application
 - Verify internet connection
+
+**Docker issues:**
+- Ensure Docker Desktop is running (if using Docker Desktop)
+- Check Docker daemon is running: `docker ps`
+- Permission errors on Linux: `sudo usermod -aG docker $USER` (then log out/in)
+- WSL2 issues on Windows: Verify WSL2 is default (`wsl --set-default-version 2`)
 
 ### Getting Help
 If you encounter issues during installation:
