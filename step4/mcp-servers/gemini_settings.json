@@ -1,0 +1,33 @@
+{
+    "preferredEditor": "cursor",
+    "theme": "Atom One",
+    "ideMode": true,
+    "hasSeenIdeIntegrationNudge": true,
+    "selectedAuthType": "oauth-personal",
+    "mcpServers": {
+      "localDBServer": {
+        "httpUrl": "http://127.0.0.1:9000/mcp"
+      },
+      "playwright": {
+        "command": "npx",
+        "args": [
+          "@playwright/mcp@latest"
+        ]
+      },
+      "postgresToolbox": {
+        "command": "/opt/homebrew/bin/toolbox",
+        "args": [
+          "--prebuilt",
+          "postgres",
+          "--stdio"
+        ],
+        "env": {
+          "POSTGRES_HOST": "localhost",
+          "POSTGRES_PORT": "5432",
+          "POSTGRES_DATABASE": "app",
+          "POSTGRES_USER": "starspark",
+          "POSTGRES_PASSWORD": "starspark"
+        }
+      }
+    }
+  }

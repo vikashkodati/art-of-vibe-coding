@@ -2,6 +2,8 @@
 
 Transform your development workflow with AI-powered vibe-coding. Hands-on workshop materials to 10x productivity using conversational programming.
 
+📊 **[Workshop Presentation](https://gamma.app/docs/Building-20x-Engineers-The-Art-of-Effective-Vibe-Coding-In-The-Ag-lenwj3dk2zwqjzu)** - Building 20x Engineers: The Art of Effective Vibe Coding In The Age of AI
+
 ## 📋 Workshop Agenda
 
 ### Part 1: Kickstart Your AI Dev Flow *(1 hour)*

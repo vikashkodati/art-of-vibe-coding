@@ -1,0 +1,14 @@
+model = "gpt-5"
+model_reasoning_effort = "medium"
+
+[projects."/Users/ashishbansal/Workspace/art-of-vibe-coding"]
+trust_level = "trusted"
+
+[mcp_servers.playwright]
+command = "npx"
+args = ['@playwright/mcp@latest']
+
+[mcp_servers.djangoDb]
+command = "/opt/homebrew/bin/toolbox"
+args = ['--prebuilt','postgres','--stdio']
+env = { "POSTGRES_HOST"= "localhost", "POSTGRES_PORT"= "5432", "POSTGRES_DATABASE"= "app", "POSTGRES_USER"= "starspark", "POSTGRES_PASSWORD"= "starspark" }
