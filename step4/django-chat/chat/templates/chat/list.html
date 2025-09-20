@@ -1,0 +1,90 @@
+{% extends 'chat/base.html' %}
+
+{% block title %}Chat Rooms - Django Chat{% endblock %}
+
+{% block extra_css %}
+<style>
+    .chat-list {
+        list-style: none;
+    }
+
+    .chat-item {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .chat-item:hover {
+        background-color: #e9ecef;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #007bff;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .chat-meta {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .no-chats {
+        text-align: center;
+        color: #6c757d;
+        padding: 3rem;
+        font-style: italic;
+    }
+
+    .create-chat-btn {
+        display: inline-block;
+        background-color: #28a745;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-bottom: 2rem;
+        transition: background-color 0.3s;
+    }
+
+    .create-chat-btn:hover {
+        background-color: #218838;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>Your Chat Rooms</h2>
+
+<a href="#" class="create-chat-btn">+ Create New Chat Room</a>
+
+{% if chat_sessions %}
+    <ul class="chat-list">
+        {% for session in chat_sessions %}
+            <li class="chat-item">
+                <a href="{% url 'chat:chat_room' session.id %}" class="chat-name">
+                    {{ session.name }}
+                </a>
+                <div class="chat-meta">
+                    Created: {{ session.created_at|date:"M d, Y H:i" }} |
+                    Last updated: {{ session.updated_at|date:"M d, Y H:i" }} |
+                    Participants: {{ session.participants.count }}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div class="no-chats">
+        <p>You haven't joined any chat rooms yet.</p>
+        <p>Create a new chat room to get started!</p>
+    </div>
+{% endif %}
+{% endblock %}

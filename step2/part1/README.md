@@ -86,8 +86,12 @@ Now let's create a specialized code review agent using the proper Claude Code wo
 **Step 2: Create New Agent**
 - Select "Create New Agent" from the menu
 - Choose **project-level** agent (recommended for this step)
-  > **Tip**: Project-level agents (stored in `.claude/agents/`) are available only in this project, while user-level agents (`~/.claude/agents/`) work across all projects. For workshop purposes, project-level keeps things isolated.
-<AB> add a small tip or indent about the different between project level and user level </AB>
+
+  > **💡 Agent Scope Tip**:
+  > - **Project-level** agents (`.claude/agents/`) work only in this project - great for project-specific standards
+  > - **User-level** agents (`~/.claude/agents/`) work across all your projects - useful for general expertise
+  >
+  > For this workshop, project-level keeps everything contained and easy to manage.
 - Select **"Generate with Claude"** option
 - Keep all default options for now
 
@@ -96,11 +100,11 @@ Now let's create a specialized code review agent using the proper Claude Code wo
 Paste this prompt when Claude asks for the agent description:
 
 ```
-Create a Senior React Developer Code Review Agent that proactively reviews React code for best practices, performance, accessibility, and maintainability.
+Create a Senior React Developer Code Review Agent that reviews React code for best practices, performance, accessibility, and maintainability.
 
 Agent Name: react-code-reviewer
 
-Purpose: This agent should proactively analyze React components and provide expert-level code reviews whenever React code is discussed or modified. The agent has 10+ years of React development experience and specializes in:
+Purpose: This agent should analyze React components and provide expert-level code reviews whenever React code is discussed or modified. The agent has 10+ years of React development experience and specializes in:
 
 - Modern React patterns (React 18+, hooks, functional components)
 - Performance optimization (re-renders, bundle size, memory)
@@ -111,7 +115,6 @@ Purpose: This agent should proactively analyze React components and provide expe
 
 The agent should offer to review code and provide feedback organized by severity (Critical, High, Medium, Low) with specific, actionable recommendations and code examples.
 ```
-<AB> `proactively` is an advanced tip. lets not include it right here. lets add that as an enhancement after the user has tested the agents once.</AB>
 **Step 4: Complete Agent Creation**
 - Accept the generated agent configuration
 - Save the agent (it will be stored in `.claude/agents/` in your project)
@@ -141,16 +144,17 @@ Use the react-code-reviewer agent to review all the React components in this pro
 
 Now let's use a different AI tool to implement the suggested improvements and see how they work together:
 
-**Step 1: Use OpenAI Codex CLI**
+**Step 1: Use OpenAI Codex CLI or Gemini CLI**
 Open a second terminal and navigate to your project:
 
 ```bash
 cd step1/recipe-sharing-app
 codex
+gemini
 ```
 
-**Step 2: Ask Codex to Fix Issues**
-Share the feedback from your Claude Code agent with Codex:
+**Step 2: Ask Codex or Gemini to Fix Issues**
+Share the feedback from your Claude Code agent with Codex or Gemini:
 
 ```
 My React code review identified these issues: [PASTE AGENT FEEDBACK HERE]
